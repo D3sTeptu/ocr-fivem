@@ -1,4 +1,5 @@
 fx_version 'cerulean'
+author 'D3sTeptu'
 game 'gta5'
 description "Advanced OCR System Build-In"
 dependencies {
