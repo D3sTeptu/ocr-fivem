@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 author 'D3sTeptu'
 game 'gta5'
-description "Advanced OCR System Build-In"
+description "Advanced OCR System Built In"
 dependencies {
     "yarn",
     "webpack"
