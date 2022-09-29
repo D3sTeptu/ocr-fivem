@@ -27,7 +27,7 @@ Citizen.CreateThread(function()
         ticks = 2500
     }
     while true do 
-        Citizen.Wait(2500)
+        Citizen.Wait(Internal.ticks)
         if Config.enableOCR and Config.screenshotModule and Config.webhookDiscord then
             if not Internal.init then
                 RegisterNUICallback("parsedText", function(data)
