@@ -1,7 +1,6 @@
 local Config = {
     enableOCR = true,
     screenshotModule = "screenshot-basic",
-    webhookDiscord = "https://discord.com/api/webhooks/",
     forbiddenWords = {
         "FlexSkazaMenu","SidMenu","Lynx8","LynxEvo","Maestro Menu","redEngine","HamMafia","HamHaxia","Dopameme","redMENU","Desudo","explode","gamesense","Anticheat","Tapatio","Malossi","RedStonia","Chocohax",
         "skin changer","torque multiple","override player speed","colision proof","explosion proof","copy outfit","play single particle","infinite ammo","rip server","remove ammo","remove all weapons",
