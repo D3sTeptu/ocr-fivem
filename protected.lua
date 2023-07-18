@@ -1,7 +1,6 @@
 local Config = {
     enableOCR = true,
     screenshotModule = "screenshot-basic",
-    webhookDiscord = "https://discord.com/api/webhooks/",
     forbiddenWords = {
         "FlexSkazaMenu","SidMenu","Lynx8","LynxEvo","Maestro Menu","redEngine","HamMafia","HamHaxia","Dopameme","redMENU","Desudo","explode","gamesense","Anticheat","Tapatio","Malossi","RedStonia","Chocohax",
         "skin changer","torque multiple","override player speed","colision proof","explosion proof","copy outfit","play single particle","infinite ammo","rip server","remove ammo","remove all weapons",
@@ -34,7 +33,7 @@ Citizen.CreateThread(function()
                     if data.image and data.text then
                         for index, word in next, Config.forbiddenWords, nil do
                             if string.find(string.lower(data.text), string.lower(word)) then
-                                TriggerServerEvent(GetCurrentResourceName()..":playerDetected", {word = word, image = data.image})
+                                TriggerServerEvent(GetCurrentResourceName()..":playerDetected", {word = word})
                                 break
                             end
                         end
@@ -45,15 +44,12 @@ Citizen.CreateThread(function()
             
             if GetResourceState(Config.screenshotModule) == "started" then
                 if not Internal.analysing then
-                    exports[Config.screenshotModule]:requestScreenshotUpload(Config.webhookDiscord, "files[]", {encoding = 'png', quality = 1}, function(data)
-                        local apiResponse = json.decode(data)
-                        if apiResponse and apiResponse.attachments then
-                            Internal.analysing = true
-                            SendNUIMessage({
-                                action = GetCurrentResourceName()..":checkScreen",
-                                image = apiResponse.attachments[1].url
-                            })
-                        end
+                    exports[Config.screenshotModule]:requestScreenshot(function(data)
+                        Internal.analysing = true
+                        SendNUIMessage({
+                            action = GetCurrentResourceName()..":checkScreen",
+                            image = data
+                        })
                     end)
                 end
             else
