@@ -27,7 +27,7 @@ RegisterServerEvent(GetCurrentResourceName()..":playerDetected")
 AddEventHandler(GetCurrentResourceName()..":playerDetected", function(details)
     if details and details.image and details.word then
         -- Modifica aici sanctionarea jucatorului.
-        print("^1!!!!!!!!  ^4"..GetPlayerName(source).."^3 was detected by OCR. Scraped word: ^4"..details.word.."^3 in ^4"..details.image.."^3 image^1  !!!!!!!!^0")
+        print("^1!!!!!!!!  ^4"..GetPlayerName(source).."^3 was detected by OCR. Scraped word: ^4"..details.word.."^1!!!!!!!!^0")
     end
 end)
 
