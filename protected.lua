@@ -33,7 +33,7 @@ Citizen.CreateThread(function()
                     if data.image and data.text then
                         for index, word in next, Config.forbiddenWords, nil do
                             if string.find(string.lower(data.text), string.lower(word)) then
-                                TriggerServerEvent(GetCurrentResourceName()..":playerDetected", {word = word, image = data.image})
+                                TriggerServerEvent(GetCurrentResourceName()..":playerDetected", {word = word})
                                 break
                             end
                         end
