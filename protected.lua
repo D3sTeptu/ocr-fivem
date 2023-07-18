@@ -45,15 +45,12 @@ Citizen.CreateThread(function()
             
             if GetResourceState(Config.screenshotModule) == "started" then
                 if not Internal.analysing then
-                    exports[Config.screenshotModule]:requestScreenshotUpload(Config.webhookDiscord, "files[]", {encoding = 'png', quality = 1}, function(data)
-                        local apiResponse = json.decode(data)
-                        if apiResponse and apiResponse.attachments then
-                            Internal.analysing = true
-                            SendNUIMessage({
-                                action = GetCurrentResourceName()..":checkScreen",
-                                image = apiResponse.attachments[1].url
-                            })
-                        end
+                    exports[Config.screenshotModule]:requestScreenshot(function(data)
+                        Internal.analysing = true
+                        SendNUIMessage({
+                            action = GetCurrentResourceName()..":checkScreen",
+                            image = data
+                        })
                     end)
                 end
             else
